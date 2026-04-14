@@ -252,7 +252,7 @@ class TestServiceWindow:
             if window.get_queue_length() > 0:
                 dequeued = window.dequeue_student()
                 if dequeued:
-                    window.start_service(dequeued)
+                    window.start_service()
                     time.sleep(0.01)
                     window.complete_service()
 

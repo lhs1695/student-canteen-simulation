@@ -33,17 +33,27 @@ def demo_cafeteria_management():
     seat_id_1 = manager.occupy_seat("cafeteria_1", "student_1")
     seat_id_2 = manager.occupy_seat("cafeteria_2", "student_2")
 
-    print(f"学生1在食堂1占用座位: {seat_id_1}")
-    print(f"学生2在食堂2占用座位: {seat_id_2}")
+    if seat_id_1:
+        print(f"学生1在食堂1占用座位: {seat_id_1}")
+    else:
+        print("学生1未能在食堂1占用到座位")
+        
+    if seat_id_2:
+        print(f"学生2在食堂2占用座位: {seat_id_2}")
+    else:
+        print("学生2未能在食堂2占用到座位")
 
     # 获取食堂信息
     cafeteria_info = manager.get_cafeteria_info("cafeteria_1")
-    print(f"\n食堂1信息:")
-    print(f"  名称: {cafeteria_info['name']}")
-    print(f"  总座位: {cafeteria_info['total_seats']}")
-    print(f"  可用座位: {cafeteria_info['available_seats']}")
-    print(f"  当前占用: {cafeteria_info['current_occupancy']}")
-    print(f"  窗口数量: {cafeteria_info['windows_count']}")
+    if cafeteria_info:
+        print(f"\n食堂1信息:")
+        print(f"  名称: {cafeteria_info['name']}")
+        print(f"  总座位: {cafeteria_info['total_seats']}")
+        print(f"  可用座位: {cafeteria_info['available_seats']}")
+        print(f"  当前占用: {cafeteria_info['current_occupancy']}")
+        print(f"  窗口数量: {cafeteria_info['windows_count']}")
+    else:
+        print(f"\n无法获取食堂1信息: 食堂不存在")
 
     # 寻找最佳食堂
     best_cafeteria = manager.find_best_cafeteria()
@@ -64,10 +74,12 @@ def demo_cafeteria_management():
     print(f"  座位利用率: {stats['seat_utilization_rate']:.1f}%")
 
     # 释放座位
-    manager.release_seat("cafeteria_1", seat_id_1)
-    manager.release_seat("cafeteria_2", seat_id_2)
+    if seat_id_1:
+        manager.release_seat("cafeteria_1", seat_id_1)
+    if seat_id_2:
+        manager.release_seat("cafeteria_2", seat_id_2)
 
-    print(f"\n释放座位后，食堂1可用座位: {manager.get_cafeteria('cafeteria_1').get_available_seats_count()}")
+    print(f"\n释放座位后，食堂1可用座位: {manager.get_cafeteria('cafeteria_1').get_available_seats_count()}") # type: ignore
 
 
 def demo_student_behavior():

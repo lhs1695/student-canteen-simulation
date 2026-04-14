@@ -123,7 +123,7 @@ class TestCafeteriaManager:
         # 测试偏好食堂
         # 释放第二食堂的一个座位（先获取一个已占用的座位ID）
         cafeteria2 = manager.get_cafeteria("cafeteria_2")
-        occupied_seats = cafeteria2.get_occupied_seats()
+        occupied_seats = cafeteria2.get_occupied_seats() # type: ignore
         assert len(occupied_seats) == 3
         seat_id = occupied_seats[0].seat_id
 
@@ -151,8 +151,8 @@ class TestCafeteriaManager:
 
         # 向第一个窗口加入队列
         cafeteria = manager.get_cafeteria("cafeteria_1")
-        window1 = cafeteria.get_window("window_1")
-        window1.enqueue_student("student_1")
+        window1 = cafeteria.get_window("window_1") # type: ignore
+        window1.enqueue_student("student_1") # type: ignore
 
         # 现在应该返回第二个窗口
         window_id = manager.allocate_window("cafeteria_1")
@@ -175,7 +175,7 @@ class TestCafeteriaManager:
 
         # 检查座位确实被占用
         cafeteria = manager.get_cafeteria("cafeteria_1")
-        assert cafeteria.get_available_seats_count() == 4
+        assert cafeteria.get_available_seats_count() == 4 # type: ignore
 
         # 不存在的食堂
         seat_id = manager.occupy_seat("nonexistent_cafeteria", "student_2")
@@ -192,7 +192,7 @@ class TestCafeteriaManager:
         assert seat_id is not None
 
         assert manager.release_seat("cafeteria_1", seat_id) is True
-        assert manager.get_cafeteria("cafeteria_1").get_available_seats_count() == 5
+        assert manager.get_cafeteria("cafeteria_1").get_available_seats_count() == 5 # type: ignore
 
         # 再次释放应该失败
         assert manager.release_seat("cafeteria_1", seat_id) is False
@@ -212,7 +212,7 @@ class TestCafeteriaManager:
         assert manager.add_window_to_cafeteria("cafeteria_1", "window_2", 2.0) is True
 
         cafeteria = manager.get_cafeteria("cafeteria_1")
-        assert len(cafeteria.get_all_windows()) == 2
+        assert len(cafeteria.get_all_windows()) == 2 # type: ignore
 
         # 添加重复窗口应该失败
         assert manager.add_window_to_cafeteria("cafeteria_1", "window_1", 3.0) is False

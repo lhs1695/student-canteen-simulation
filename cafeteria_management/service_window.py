@@ -138,7 +138,7 @@ class ServiceWindow:
                 return None
 
             student_id = self._current_student_id
-            service_time = time.time() - self._service_start_time
+            service_time = time.time() - self._service_start_time # type: ignore
 
             # 更新统计信息
             self._stats.total_served += 1
@@ -198,7 +198,7 @@ class ServiceWindow:
 
             if self._status == WindowStatus.SERVING:
                 # 计算当前服务的剩余时间
-                current_service_time = time.time() - self._service_start_time
+                current_service_time = time.time() - self._service_start_time # type: ignore
                 remaining_service_time = max(0, (1.0 / self.service_rate) - current_service_time)
             else:
                 # 窗口空闲，没有当前服务
