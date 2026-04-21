@@ -7,6 +7,7 @@
 ### 1. CafeteriaManager（食堂管理器）
 
 #### 创建和管理食堂
+
 - `create_cafeteria(cafeteria_id: str, name: str, total_seats: int) -> bool`
   - 功能：创建新食堂
   - 参数：食堂唯一标识符、名称、总座位数
@@ -23,6 +24,7 @@
   - 返回：食堂对象或None
 
 #### 食堂状态查询
+
 - `get_cafeteria_info(cafeteria_id: str) -> Optional[Dict[str, Any]]`
   - 功能：获取食堂详细信息
   - 参数：食堂ID
@@ -38,6 +40,7 @@
   - 返回：最佳食堂ID或None
 
 #### 窗口管理
+
 - `add_window_to_cafeteria(cafeteria_id: str, window_id: str, service_rate: float = 1.0) -> bool`
   - 功能：为食堂添加窗口
   - 参数：食堂ID、窗口ID、服务速率
@@ -49,6 +52,7 @@
   - 返回：窗口ID或None
 
 #### 座位管理
+
 - `occupy_seat(cafeteria_id: str, student_id: str) -> Optional[str]`
   - 功能：在指定食堂占用座位
   - 参数：食堂ID、学生ID
@@ -60,6 +64,7 @@
   - 返回：是否成功释放
 
 #### 系统统计
+
 - `get_system_stats() -> Dict[str, Any]`
   - 功能：获取系统整体统计信息
   - 返回：包含统计信息的字典
@@ -68,6 +73,7 @@
 ### 2. Cafeteria（食堂类）
 
 #### 窗口操作
+
 - `get_window(window_id: str) -> Optional[ServiceWindow]`
   - 功能：获取指定窗口对象
   - 返回：窗口对象或None
@@ -77,6 +83,7 @@
   - 返回：窗口对象或None
 
 #### 座位操作
+
 - `get_available_seats_count() -> int`
   - 功能：获取可用座位数
   - 返回：可用座位数
@@ -86,6 +93,7 @@
   - 返回：被占用座位的列表
 
 #### 食堂信息
+
 - `get_cafeteria_info() -> Dict[str, Any]`
   - 功能：获取食堂完整信息
   - 返回：包含食堂所有信息的字典
@@ -93,6 +101,7 @@
 ### 3. ServiceWindow（服务窗口类）
 
 #### 队列操作
+
 - `enqueue_student(student_id: str) -> bool`
   - 功能：学生加入队列
   - 参数：学生ID
@@ -107,6 +116,7 @@
   - 返回：队列长度
 
 #### 服务操作
+
 - `start_service() -> bool`
   - 功能：开始为下一个学生服务
   - 返回：是否成功开始服务
@@ -128,6 +138,7 @@
 ### 1. Student（学生类）
 
 #### 状态转换方法
+
 - `select_cafeteria(cafeteria_id: str) -> bool`
   - 功能：选择食堂
   - 参数：食堂ID
@@ -164,6 +175,7 @@
   - 返回：是否成功放弃
 
 #### 状态查询方法
+
 - `get_current_state() -> StudentState`
   - 功能：获取当前状态
   - 返回：当前学生状态枚举
@@ -178,6 +190,7 @@
   - 返回：状态转换历史列表
 
 #### 行为决策方法
+
 - `is_waiting_too_long() -> bool`
   - 功能：检查是否等待时间过长
   - 返回：是否等待时间过长
@@ -191,6 +204,7 @@
   - 返回：预计就餐时长（秒）
 
 ### 2. StudentPreferences（学生偏好类）
+
 - 构造函数参数：
   - `preferred_cafeteria_id: Optional[str]` - 偏好食堂ID
   - `max_wait_time: float` - 最大等待时间（秒）
@@ -199,6 +213,7 @@
   - `walking_speed: float` - 行走速度（米/秒）
 
 ### 3. StudentState（学生状态枚举）
+
 - `ARRIVED` - 到达系统
 - `SELECTING_CAFETERIA` - 选择食堂
 - `QUEUING` - 排队中
